@@ -230,11 +230,11 @@ class Details extends \Magento\Sales\Block\Order\Totals
     /**
      * Get Customer Id
      *
-     * @return string
+     * @return int
      */
-    public function getCustomerId(): string
+    public function getCustomerId(): int
     {
-        return $this->customerSession->getCustomer()->getId();
+        return (int)$this->customerSession->getCustomer()->getId();
     }
 
     /**
