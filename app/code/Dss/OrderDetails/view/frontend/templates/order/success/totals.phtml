@@ -1,0 +1,41 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+* Digit Software Solutions..
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the EULA
+* that is bundled with this package in the file LICENSE.txt.
+*
+* @category   Dss
+* @package    Dss_OrderDetails
+* @author     Extension Team
+* @copyright Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
+*/
+?>
+<?php foreach ($block->getTotals() as $code => $total): ?>
+    <?php if ($total->getBlockName()): ?>
+        <?= $block->getChildHtml($total->getBlockName(), false); ?>
+    <?php else: ?>
+    <tr class="<?= $escaper->escapeHtmlAttr($code) ?>">
+        <th colspan="5" <?= $escaper->escapeHtmlAttr($block->getLabelProperties()) ?> scope="row">
+            <?php if ($total->getStrong()): ?>
+            <strong><?= $escaper->escapeHtml($total->getLabel()); ?></strong>
+            <?php else: ?>
+                <?= $escaper->escapeHtml($total->getLabel()); ?>
+            <?php endif ?>
+        </th>
+        <td <?= $escaper->escapeHtmlAttr($block->getValueProperties()) ?> 
+            data-th="<?= $escaper->escapeHtml($total->getLabel()); ?>">
+            <?php if ($total->getStrong()): ?>
+            <strong><?= $escaper->escapeHtml($block->formatValue($total)) ?></strong>
+            <?php else: ?>
+                <?= $escaper->escapeHtml($block->formatValue($total)) ?>
+            <?php endif ?>
+        </td>
+    </tr>
+    <?php endif ?>
+<?php endforeach ?>

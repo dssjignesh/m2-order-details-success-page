@@ -1,0 +1,66 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+* Digit Software Solutions..
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the EULA
+* that is bundled with this package in the file LICENSE.txt.
+*
+* @category   Dss
+* @package    Dss_OrderDetails
+* @author     Extension Team
+* @copyright Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
+*/
+?>
+<?php
+    $order  = $block->getOrder();
+    $source = $block->getSource();
+    $fullInfo = $block->getHelper()->getCalculatedTaxes($source);
+?>
+
+<?php if ($fullInfo && $block->displayFullSummary()): ?>
+        <?php foreach ($fullInfo as $info): ?>
+            <?php
+                $percent    = $info['percent'];
+                $amount     = $info['tax_amount'];
+                $baseAmount = $info['base_tax_amount'];
+                $title      = $info['title'];
+            ?>
+            <tr class="totals tax details<?= $block->getIsPlaneMode() ? ' plane' : ''; ?>">
+                <th colspan="5" <?= $escaper->escapeHtmlAttr($block->getLabelProperties()) ?>>
+                    <?= $escaper->escapeHtml($title); ?>
+                    <?php if ($percent !== null): ?>
+                        (<?= $escaper->escapeHtmlAttr((float)$percent); ?>%)
+                    <?php endif; ?>
+                    <br />
+                </th>
+                <td <?= $escaper->escapeHtmlAttr($block->getValueProperties()) ?> rowspan="1">
+                    <?= $escaper->escapeHtml($order->formatPrice($amount)); ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+<?php endif;?>
+
+<?php if ($block->displayFullSummary() && $fullInfo && !$block->getIsPlaneMode()): ?>
+<tr class="totals-tax-summary">
+<?php elseif ($block->displayFullSummary() && $fullInfo && $block->getIsPlaneMode()): ?>
+<tr class="totals-tax-summary plane">
+<?php else: ?>
+<tr class="totals-tax">
+<?php endif; ?>
+    <th colspan="5" <?= $escaper->escapeHtmlAttr($block->getLabelProperties()) ?> scope="row">
+        <?php if ($block->displayFullSummary()): ?>
+            <div class="detailed"><?= $escaper->escapeHtml(__('Tax')); ?></div>
+        <?php else: ?>
+            <?= $escaper->escapeHtml(__('Tax')); ?>
+        <?php endif; ?>
+    </th>
+    <td <?= $escaper->escapeHtmlAttr($block->getValueProperties()) ?>
+            data-th="<?= $escaper->escapeHtml(__('Tax')); ?>">
+        <?= $escaper->escapeHtml($order->formatPrice($source->getTaxAmount())) ?>
+    </td>
+</tr>

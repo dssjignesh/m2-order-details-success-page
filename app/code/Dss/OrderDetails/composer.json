@@ -1,0 +1,25 @@
+{
+    "name": "dss/m2-order-details-success-page",
+    "description": "Dss Order Details Module",
+    "type": "magento2-module",
+    "version": "0.0.1",
+    "require": {
+        "php": "^8.1",
+        "magento/product-community-edition": "^2.4.5",
+        "Dss/core":"*"
+    },
+    "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4":  {
+            "Dss\\OrderDetails\\": ""
+        }
+    }
+}
+
+  
