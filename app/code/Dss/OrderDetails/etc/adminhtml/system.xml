@@ -90,8 +90,9 @@
                 </field>
                  <field id="color_thanks" translate="label" type="text" sortOrder="4" showInDefault="1" 
                     showInWebsite="1" showInStore="1">
-                    <frontend_class>jscolor</frontend_class>
                     <label>Color</label>
+                    <validate>color</validate>
+                    <frontend_model>Dss\Core\Block\Adminhtml\ColorPicker</frontend_model>
                 </field>
             </group>
 
@@ -111,8 +112,9 @@
                 </field>
                  <field id="color_text_before" translate="label" type="text" sortOrder="4" showInDefault="1" 
                     showInWebsite="1" showInStore="1">
-                    <frontend_class>jscolor</frontend_class>
                     <label>Color</label>
+                    <validate>color</validate>
+                    <frontend_model>Dss\Core\Block\Adminhtml\ColorPicker</frontend_model>
                 </field>
             </group>
 
@@ -132,8 +134,9 @@
                 </field>
                  <field id="color_text_after" translate="label" type="text" sortOrder="4" showInDefault="1" 
                     showInWebsite="1" showInStore="1">
-                    <frontend_class>jscolor</frontend_class>
                     <label>Color</label>
+                    <validate>color</validate>
+                    <frontend_model>Dss\Core\Block\Adminhtml\ColorPicker</frontend_model>
                 </field>
             </group>
         </section>

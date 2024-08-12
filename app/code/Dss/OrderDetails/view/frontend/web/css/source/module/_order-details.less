@@ -1,0 +1,189 @@
+.checkout-onepage-success,
+.sales-order-print {
+    .bold {
+        font-weight: bold;
+    }
+    .checkout-success {
+        margin-top: 10px;
+    }
+    .order-date {
+        margin-top: 20px;
+    }
+    .bmess {
+        margin: 5px 0;
+        word-wrap: break-word;
+        width: 50%;
+    }
+    .info {
+        float: left;
+        width: 100%;
+        margin: 3% 0;
+    }
+    .shipping-address {
+        width: 25%;
+        float: left;
+    }
+    .shipping-method {
+        width: 25%;
+        float: left;
+    }
+    .billing-address {
+        width: 25%;
+        float: left;
+    }
+    .billing-method {
+        width: 25%;
+        float: left;
+    }
+    .box-content {
+        margin-top: 5%;
+    }
+    .box-title {
+        border-left: 7px solid rgb(225,221,219);
+    }
+    .box-des {
+        padding-left: 8px;
+    }
+    .show-order {
+        clear: both;
+    }
+    .fmess {
+        float: left;
+        width: 50%;
+        margin-top: 15px;
+        margin-bottom: 50px;
+    }
+    .actions-order {
+        float: right;
+        padding-top: 15px;
+        margin-right: 62px;
+    }
+    .reorderurl {
+        float: left;
+        font-size: 20px;
+    }
+    .printurl {
+        float: left;
+        font-size: 20px;
+        padding-left: 50px;
+    }
+    .action-reorder {
+        &:hover {
+            text-decoration: none;
+            color: #DF0029;
+        }
+    }
+    .action-print {
+        &:hover {
+            text-decoration: none;
+            color: #DF0029;
+        }
+    }
+    .text-under {
+        height: 50px;
+    }
+    .status {
+        margin-top: 5px;
+    }
+    .button-continue {
+        width: 50%;
+        float: right;
+        .continue {
+            background-color: #ff5501;
+            border: none;
+            float: right;
+            clear: both;
+            padding: 10px 25px;
+            font-size: 12px;
+            margin-right: 70px;
+            &:hover {
+                background-color: #ff5501;
+                border: 1px solid #ff5501;
+            }
+        }
+        a.action.primary {
+            border-radius: 0;
+        }
+    }
+    table {
+        td {
+            background-color: rgb(225,221,219);
+            padding: 10px 0 10px 5px;
+        }
+        tbody {
+            tr {
+                td {
+                    dl {
+                        margin-bottom: 0px;
+                        padding-top: 5px;
+                    }
+                }
+            }
+        }
+    }
+    tfoot {
+        th {
+            background-color: rgb(225,221,219);
+            text-align: right;
+            padding-right: 50px !important;
+            text-transform: uppercase;
+        }
+        td {
+            text-align: right;
+            padding-right: 40px !important;
+        }
+    }
+    .data-item {
+        border-bottom: 4px solid white;
+        border-top: 4px solid white;
+        td {
+            border-right: 4px solid white;
+            &:last-child {
+                border-right: none;
+            }
+        }
+    }
+    .table-number {
+        text-align: right;
+    }
+    @media only screen and (min-width: 768px) {
+        .checkout-onepage-success {
+            .ie10 {
+                .page-wrapper {
+                    height: auto !important;
+                }
+            }
+        }
+        .ie11 {
+            .page-wrapper {
+                height: auto !important;
+            }
+        }
+    }
+    @media only screen and (max-width: 480px) {
+        .fmess {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .bmess {
+            width: 100%;
+        }
+        .button-continue {
+            width: 100%;
+            margin-top: 10px;
+            .continue {
+                float: none;
+            }
+        }
+        .actions-order {
+            float: none;
+            clear: both;
+        }
+        .data-item {
+            border-bottom: none;
+            td {
+                border-right: none;
+            }
+        }
+    }
+}

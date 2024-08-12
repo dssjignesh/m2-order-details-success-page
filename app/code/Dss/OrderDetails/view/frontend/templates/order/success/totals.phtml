@@ -20,7 +20,7 @@ declare(strict_types=1);
     <?php if ($total->getBlockName()): ?>
         <?= $block->getChildHtml($total->getBlockName(), false); ?>
     <?php else: ?>
-    <tr class="<?= $escaper->escapeHtmlAttr($code) ?>">
+    <tr class="<?= /* @noEscape */ $code ?>">
         <th colspan="5" <?= $escaper->escapeHtmlAttr($block->getLabelProperties()) ?> scope="row">
             <?php if ($total->getStrong()): ?>
             <strong><?= $escaper->escapeHtml($total->getLabel()); ?></strong>
