@@ -1,3 +1,7 @@
+@primary-order-details-color-red: #df0029;
+@primary-order-details-color-orange: #ff5501;
+@primary-order-details-color-white: #fff;
+
 .checkout-onepage-success,
 .sales-order-print {
     .bold {
@@ -11,29 +15,29 @@
     }
     .bmess {
         margin: 5px 0;
-        word-wrap: break-word;
         width: 50%;
+        word-wrap: break-word;
     }
     .info {
         float: left;
-        width: 100%;
         margin: 3% 0;
+        width: 100%;
     }
     .shipping-address {
-        width: 25%;
         float: left;
+        width: 25%;
     }
     .shipping-method {
-        width: 25%;
         float: left;
+        width: 25%;
     }
     .billing-address {
-        width: 25%;
         float: left;
+        width: 25%;
     }
     .billing-method {
-        width: 25%;
         float: left;
+        width: 25%;
     }
     .box-content {
         margin-top: 5%;
@@ -49,14 +53,14 @@
     }
     .fmess {
         float: left;
-        width: 50%;
-        margin-top: 15px;
         margin-bottom: 50px;
+        margin-top: 15px;
+        width: 50%;
     }
     .actions-order {
         float: right;
-        padding-top: 15px;
         margin-right: 62px;
+        padding-top: 15px;
     }
     .reorderurl {
         float: left;
@@ -69,14 +73,14 @@
     }
     .action-reorder {
         &:hover {
+            color: @primary-order-details-color-red;
             text-decoration: none;
-            color: #DF0029;
         }
     }
     .action-print {
         &:hover {
+            color: @primary-order-details-color-red;
             text-decoration: none;
-            color: #DF0029;
         }
     }
     .text-under {
@@ -86,19 +90,19 @@
         margin-top: 5px;
     }
     .button-continue {
-        width: 50%;
         float: right;
+        width: 50%;
         .continue {
-            background-color: #ff5501;
+            background-color: @primary-order-details-color-orange;
             border: none;
-            float: right;
             clear: both;
-            padding: 10px 25px;
+            float: right;
             font-size: 12px;
             margin-right: 70px;
+            padding: 10px 25px;
             &:hover {
-                background-color: #ff5501;
-                border: 1px solid #ff5501;
+                background-color: @primary-order-details-color-orange;
+                border: 1px solid @primary-order-details-color-orange;
             }
         }
         a.action.primary {
@@ -114,7 +118,7 @@
             tr {
                 td {
                     dl {
-                        margin-bottom: 0px;
+                        margin-bottom: 0;
                         padding-top: 5px;
                     }
                 }
@@ -124,20 +128,20 @@
     tfoot {
         th {
             background-color: rgb(225,221,219);
-            text-align: right;
             padding-right: 50px !important;
+            text-align: right;
             text-transform: uppercase;
         }
         td {
-            text-align: right;
             padding-right: 40px !important;
+            text-align: right;
         }
     }
     .data-item {
-        border-bottom: 4px solid white;
-        border-top: 4px solid white;
+        border-bottom: 4px solid @primary-order-details-color-white;
+        border-top: 4px solid @primary-order-details-color-white;
         td {
-            border-right: 4px solid white;
+            border-right: 4px solid @primary-order-details-color-white;
             &:last-child {
                 border-right: none;
             }
@@ -162,22 +166,22 @@
     }
     @media only screen and (max-width: 480px) {
         .fmess {
-            width: 100%;
             margin-bottom: 10px;
+            width: 100%;
         }
         .bmess {
             width: 100%;
         }
         .button-continue {
-            width: 100%;
             margin-top: 10px;
+            width: 100%;
             .continue {
                 float: none;
             }
         }
         .actions-order {
-            float: none;
             clear: both;
+            float: none;
         }
         .data-item {
             border-bottom: none;

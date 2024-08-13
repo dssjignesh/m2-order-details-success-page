@@ -31,8 +31,8 @@ class Tax extends \Magento\Tax\Block\Sales\Order\Tax
      * @param array $data
      */
     public function __construct(
-        protected Context $context,
-        protected Config $taxConfig,
+        Context $context,
+        Config $taxConfig,
         protected Data $helper,
         array $data = []
     ) {
@@ -44,7 +44,7 @@ class Tax extends \Magento\Tax\Block\Sales\Order\Tax
      *
      * @return \Magento\Tax\Helper\Data
      */
-    public function getHelper()
+    public function getHelper(): \Magento\Tax\Helper\Data
     {
         return $this->helper;
     }

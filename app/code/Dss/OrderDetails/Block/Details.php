@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
- /**
+/**
  * Digit Software Solutions..
  *
  * NOTICE OF LICENSE
@@ -14,7 +14,8 @@ declare(strict_types=1);
  * @package    Dss_OrderDetails
  * @author     Extension Team
  * @copyright Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
- */
+*/
+
 namespace Dss\OrderDetails\Block;
 
 use Dss\OrderDetails\Helper\Data;

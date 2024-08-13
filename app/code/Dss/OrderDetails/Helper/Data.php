@@ -17,7 +17,9 @@ declare(strict_types=1);
 */
 namespace Dss\OrderDetails\Helper;
 
-class Data extends \Magento\Framework\App\Helper\AbstractHelper
+use Magento\Framework\App\Helper\AbstractHelper;
+
+class Data extends AbstractHelper
 {
     /**
      * Get Enable|Disable

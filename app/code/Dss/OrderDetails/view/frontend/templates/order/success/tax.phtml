@@ -1,27 +1,21 @@
 <?php
-
-declare(strict_types=1);
-
 /**
-* Digit Software Solutions..
-*
-* NOTICE OF LICENSE
-*
-* This source file is subject to the EULA
-* that is bundled with this package in the file LICENSE.txt.
-*
-* @category   Dss
-* @package    Dss_OrderDetails
-* @author     Extension Team
-* @copyright Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
-*/
+ * Digit Software Solutions..
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ *
+ * @category   Dss
+ * @package    Dss_OrderDetails
+ * @author     Extension Team
+ * @copyright Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
+ */
 ?>
-<?php
-    $order  = $block->getOrder();
-    $source = $block->getSource();
-    $fullInfo = $block->getHelper()->getCalculatedTaxes($source);
-?>
-
+<?php $order  = $block->getOrder(); ?>
+<?php $source = $block->getSource(); ?>
+<?php $fullInfo = $block->getHelper()->getCalculatedTaxes($source); ?>
 <?php if ($fullInfo && $block->displayFullSummary()): ?>
         <?php foreach ($fullInfo as $info): ?>
             <?php
@@ -32,9 +26,11 @@ declare(strict_types=1);
             ?>
             <tr class="totals tax details<?= $block->getIsPlaneMode() ? ' plane' : ''; ?>">
                 <th colspan="5" <?= $escaper->escapeHtmlAttr($block->getLabelProperties()) ?>>
-                    <?= $escaper->escapeHtml($title); ?>
+                    <?= $escaper->escapeHtml($title) ?>
                     <?php if ($percent !== null): ?>
-                        (<?= $escaper->escapeHtmlAttr((float)$percent); ?>%)
+                        <?= $escaper->escapeHtml(__('(')) ?>
+                        <?= $escaper->escapeHtmlAttr((float)$percent); ?>
+                        <?= $escaper->escapeHtml(__('%)')) ?>
                     <?php endif; ?>
                     <br />
                 </th>
@@ -46,21 +42,21 @@ declare(strict_types=1);
 <?php endif;?>
 
 <?php if ($block->displayFullSummary() && $fullInfo && !$block->getIsPlaneMode()): ?>
-<tr class="totals-tax-summary">
+    <tr class="totals-tax-summary">
 <?php elseif ($block->displayFullSummary() && $fullInfo && $block->getIsPlaneMode()): ?>
-<tr class="totals-tax-summary plane">
+    <tr class="totals-tax-summary plane">
 <?php else: ?>
 <tr class="totals-tax">
 <?php endif; ?>
     <th colspan="5" <?= $escaper->escapeHtmlAttr($block->getLabelProperties()) ?> scope="row">
         <?php if ($block->displayFullSummary()): ?>
-            <div class="detailed"><?= $escaper->escapeHtml(__('Tax')); ?></div>
+            <div class="detailed"><?= $escaper->escapeHtml(__('Tax'))?></div>
         <?php else: ?>
-            <?= $escaper->escapeHtml(__('Tax')); ?>
+            <?= $escaper->escapeHtml(__('Tax'))?>
         <?php endif; ?>
     </th>
     <td <?= $escaper->escapeHtmlAttr($block->getValueProperties()) ?>
-            data-th="<?= $escaper->escapeHtml(__('Tax')); ?>">
+            data-th="<?= $escaper->escapeHtml(__('Tax')) ?>" >
         <?= $escaper->escapeHtml($order->formatPrice($source->getTaxAmount())) ?>
     </td>
 </tr>
