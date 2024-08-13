@@ -45,7 +45,7 @@ $textaftercl = '#' . $escaper->escapeHtml($block->getAfterTextColorDetails());
             </p>
         <?php else: ?>
             <p>
-                <?= 
+                <?=
                     $orderNumber = $escaper->escapeHtml($order->getIncrementId());
                     $escaper->escapeHtml(__('Your order is: <span>%1</span>.', $orderNumber))
                 ?>
