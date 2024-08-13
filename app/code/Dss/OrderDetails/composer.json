@@ -13,7 +13,7 @@
     "require": {
         "php": "^8.1",
         "magento/product-community-edition": "^2.4.5",
-        "Dss/core":"Dss/m2-core"
+        "dss/m2-core": "^0.0.1"
     },
     "license": [
     "OSL-3.0",
