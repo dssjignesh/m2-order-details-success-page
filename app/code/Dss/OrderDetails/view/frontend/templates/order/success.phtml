@@ -1,0 +1,235 @@
+<?php
+/**
+ * Digit Software Solutions..
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ *
+ * @category   Dss
+ * @package    Dss_OrderDetails
+ * @author     Extension Team
+ * @copyright Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
+ */
+?>
+<?php /** @var $block \Dss\OrderDetails\Block\Details */ ?>
+<?php
+$order = $block->getOrder();
+$payment = $order->getPayment();
+$method = $payment ? $payment->getMethodInstance() : null;
+$reorderurl = $block->getReorder();
+$printurl = $block->getPrint();
+$date = $order->getCreatedAt();
+$formatdate = $escaper->escapeHtml($block->formatDate($date));
+$thanksz = $escaper->escapeHtml($block->getThankMessegerSizeDetails());
+$textbeforesz = $escaper->escapeHtml($block->getBeforeTextSizeDetails());
+$textaftersz = $escaper->escapeHtml($block->getAfterTextSizeDetails());
+$thankcl = '#' . $escaper->escapeHtml($block->getThankMessegerColorDetails());
+$textbeforecl = '#' . $escaper->escapeHtml($block->getBeforeTextColorDetails());
+$textaftercl = '#' . $escaper->escapeHtml($block->getAfterTextColorDetails());
+?>
+<div class="checkout-success">
+    <?php if ($order->getIncrementId()): ?>
+        <?php if ($block->getCustomerId()): ?>
+            <p>
+                <?php $orderNumber = $order->getIncrementId(); ?>
+                <?php $reorder = $block->getReorder(); ?>
+                <?= $escaper->escapeHtml("Your order is:") ?>
+                <a href="<?= $escaper->escapeHtml($reorder) ?>" class="order-number">
+                    <?= $escaper->escapeHtml($orderNumber) ?>
+                </a>
+            </p>
+        <?php else: ?>
+            <p>
+                <?php $orderNumber = $order->getIncrementId(); ?>
+                <?= $escaper->escapeHtml("Your order is:") ?>
+                <span><?= $escaper->escapeHtml($orderNumber) ?></span>
+            </p>
+        <?php endif; ?>
+        <p><?= $escaper->escapeHtml(__('We\'ll email you an order confirmation with details and tracking info.'))?></p>
+    <?php endif; ?>
+    <?= $block->getAdditionalInfoHtml() ?>
+</div>
+
+<?php if ($block->isEnableDetails()): ?>
+    <div class="order-details">
+        <?php $thankMss = $block->getThankMessegerDetails() ?>
+        <p class="tmess"><?= $escaper->escapeHtml($thankMss) ?></p>
+        <?php if ($block->isEnableOrderStatusDetails()): ?>
+            <div class="order-date">
+                <span class="label"><?= $escaper->escapeHtml(__('Order Date: '))?>
+                    <date><?= $escaper->escapeHtml($formatdate) ?></date>
+                </span>
+            </div>
+            <div class="status">
+                <p>
+                    <?= $escaper->escapeHtml(__('Order Status: '))?>
+                    <span><?= $escaper->escapeHtml($order->getStatusLabel()) ?></span>
+                </p>
+            </div>
+        <?php endif; ?>
+        <?php $textbefore = $escaper->escapeHtml($block->getBeforeTextDetails()) ?>
+        <div><p class="bmess"><?= $escaper->escapeHtml($textbefore) ?></p></div>
+        <div class="info">
+            <?php if ($block->isEnableShippingAddressDetails()): ?>
+                <?php $_shippingAddress = $block->formatShipping(); ?>
+                <div class="shipping-address">
+                    <strong class="box-title">
+                        <span class="box-des"><?= $escaper->escapeHtml('Shipping Address') ?></span>
+                    </strong>
+                    <div class="box-content">
+                        <?php if ($_shippingAddress): ?>
+                            <address><?= /* @noEscape */ $_shippingAddress; ?></address>
+                        <?php else: ?>
+                            <?= $escaper->escapeHtml('No shipping Address available'); ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ($block->isEnableShippingMethodDetails()): ?>
+                <?php $shippingMethod = $order->getShippingDescription(); ?>
+                <div class="shipping-method">
+                    <strong class="box-title">
+                        <span class="box-des"><?= $escaper->escapeHtml('Shipping Method') ?></span>
+                    </strong>
+                    <div class="box-content">
+                        <?php if ($shippingMethod): ?>
+                            <?= /* @noEscape */ $shippingMethod; ?>
+                        <?php else: ?>
+                            <?= $escaper->escapeHtml('No shipping information available'); ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($block->isEnableBillingAddressDetails()): ?>
+                <?php $_billingAddress = $block->formatBilling(); ?>
+                <div class="billing-address">
+                    <strong class="box-title">
+                        <span class="box-des"><?= $escaper->escapeHtml('Billing Address') ?></span>
+                    </strong>
+                    <div class="box-content">
+                        <address><?= /* @noEscape */ $_billingAddress; ?></address>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($block->isEnablePaymentMethodDetails()): ?>
+                <?php $methodTitle = $escaper->escapeHtml($method ? $method->getTitle() : ''); ?>
+                <div class="billing-method">
+                    <strong class="box-title">
+                        <span class="box-des"><?= $escaper->escapeHtml('Payment Method') ?></span>
+                    </strong>
+                    <div class="box-content">
+                    <?= /* @noEscape */ $methodTitle; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+
+        <?php if ($block->isEnableOrderProductDetails()): ?>
+            <div class="show-order">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="2"><?= $escaper->escapeHtml('Product Name') ?></th>
+                            <th><?= $escaper->escapeHtml('SKU') ?></th>
+                            <th class="table-number"><?= $escaper->escapeHtml('Price') ?></th>
+                            <th class="table-number"><?= $escaper->escapeHtml('Qty') ?></th>
+                            <th class="table-number"><?= $escaper->escapeHtml('Subtotal') ?></th>
+                        </tr>
+                    </thead>
+                    <?php $items = $order->getItemsCollection(); ?>
+                    <?php foreach ($items as $item): ?>
+                        <?php if ($item->getParentItem()) { continue; } ?>
+                        <tr class="data-item">
+                            <td colspan="2"><?= $escaper->escapeHtml($item->getName()); ?>
+                                <?php $options = $block->getItemOptions($item); ?>
+                                <?php if ($options): ?>
+                                    <?php foreach ($options as $option): ?>
+                                        <dl>
+                                            <dt><?= $escaper->escapeHtml($option['label']) ?></dt>
+                                            <dd><?= $escaper->escapeHtml($option['value']) ?></dd>
+                                        </dl>
+                                    <?php endforeach ?>
+                                <?php endif ?>
+                            </td>
+                            <td><?= $escaper->escapeHtml($item->getSku()); ?></td>
+                            <td class="table-number">
+                                <?= $escaper->escapeHtml($block->formatPrice($item->getPrice(), true, false)) ?>
+                            </td>
+                            <td class="table-number">
+                                <?= $escaper->escapeHtml('Ordered: '.(int)$item->getQtyOrdered()); ?>
+                            </td>
+                            <td class="table-number">
+                                <?= $escaper->escapeHtml($block->formatPrice($item->getRowTotal(), true, false)) ?>
+                            </td>
+                        </tr>
+                        <?php
+                        $bundleChildrens = $item->getChildrenItems();
+                        $atts = $block->getBundleItemOptions($item);
+                        $attArray = [];
+                        foreach ($atts as $key => $att) {
+                            $attArray[$att['option_id']] = $att;
+                        }
+                        ksort($attArray); ?>
+                        <?php if ($attArray): ?>
+                            <?php
+                            $sku = [];
+                            $countSku= 0;
+                            foreach ($bundleChildrens as $key => $bundleChildren) {
+                                if ($bundleChildren['sku']) {
+                                    $countSku ++;
+                                }
+                                $sku[$countSku] = $bundleChildren['sku'];
+                            }
+                            $count = 0; ?>
+                            <?php foreach ($attArray as $att): ?>
+                                <tr>
+                                    <td colspan="6"><?= $escaper->escapeHtml($att['label']) ?></td>
+                                </tr>
+                                <?php foreach ($att['value'] as $at): $count++ ?>
+                                    <tr class="bundle-option">
+                                        <td colspan="2"><?= $escaper->escapeHtml($at['qty'].' x '.$at['title'].' x '
+                                            .$block->formatPrice($at['price'])) ?></td>
+                                        <td><?= $escaper->escapeHtml($sku[$count]) ?></td>
+                                        <td colspan="3">
+                                            <?= $escaper->escapeHtml('Ordered: ').$escaper->escapeHtml($at['qty'] *
+                                            $item->getQtyOrdered()); ?>
+                                        </td>
+                                    </tr>
+                                <?php endforeach ?>
+                            <?php endforeach ?>
+                        <?php endif ?>
+                    <?php endforeach ?>
+                </table>
+            </div>
+        <?php endif ?>
+
+        <?php $textafter = $escaper->escapeHtml($block->getAfterTextDetails()) ?>
+        <div><p class="fmess"><?= /* @noEscape */ $textafter ; ?></p></div>
+    </div>
+    <script type="text/x-magento-init">
+    {
+        "*": {
+            "Dss_OrderDetails/js/continue": {}
+        }
+    }
+    </script>
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Dss_OrderDetails/js/css-script": {
+            "thanksz": <?= /* @noEscape */ json_encode($thanksz) ?>,
+            "thankcl": <?= /* @noEscape */ json_encode($thankcl) ?>,
+            "textbeforesz": <?= /* @noEscape */ json_encode($textbeforesz) ?>,
+            "textbeforecl": <?= /* @noEscape */ json_encode($textbeforecl) ?>,
+            "textaftersz": <?= /* @noEscape */ json_encode($textaftersz) ?>,
+            "textaftercl": <?= /* @noEscape */ json_encode($textaftercl) ?>
+        }
+    }
+}
+</script>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Digit Software Solutions..
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the EULA
+* that is bundled with this package in the file LICENSE.txt.
+*
+* @category   Dss
+* @package    Dss_OrderDetails
+* @author     Extension Team
+* @copyright Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
+*/
+ -->
+ <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" 
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <container name="order.success.additional.info" label="Order Success Additional Info"/>
+            <block class="Dss\OrderDetails\Block\Details" name="dss.get.order.details" 
+                template="Dss_OrderDetails::order/success.phtml" after="-">
+                <block class="Dss\OrderDetails\Block\Details" name="order.totals" 
+                    template="Dss_OrderDetails::order/success/totals.phtml">
+                    <arguments>
+                        <argument name="label_properties" xsi:type="string">class="table-method"</argument>
+                        <argument name="value_properties" xsi:type="string">class="number"</argument>
+                    </arguments>
+                    <block class="Dss\OrderDetails\Block\Tax" name="tax" 
+                        template="Dss_OrderDetails::order/success/tax.phtml"/>
+                </block>
+            </block>
+        </referenceContainer>
+        <referenceBlock name="checkout.success" remove="true"/>
+    </body>
+</page>

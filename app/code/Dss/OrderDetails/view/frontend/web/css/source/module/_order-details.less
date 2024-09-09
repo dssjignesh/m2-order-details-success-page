@@ -1,0 +1,193 @@
+@primary-order-details-color-red: #df0029;
+@primary-order-details-color-orange: #ff5501;
+@primary-order-details-color-white: #fff;
+
+.checkout-onepage-success,
+.sales-order-print {
+    .bold {
+        font-weight: bold;
+    }
+    .checkout-success {
+        margin-top: 10px;
+    }
+    .order-date {
+        margin-top: 20px;
+    }
+    .bmess {
+        margin: 5px 0;
+        width: 50%;
+        word-wrap: break-word;
+    }
+    .info {
+        float: left;
+        margin: 3% 0;
+        width: 100%;
+    }
+    .shipping-address {
+        float: left;
+        width: 25%;
+    }
+    .shipping-method {
+        float: left;
+        width: 25%;
+    }
+    .billing-address {
+        float: left;
+        width: 25%;
+    }
+    .billing-method {
+        float: left;
+        width: 25%;
+    }
+    .box-content {
+        margin-top: 5%;
+    }
+    .box-title {
+        border-left: 7px solid rgb(225,221,219);
+    }
+    .box-des {
+        padding-left: 8px;
+    }
+    .show-order {
+        clear: both;
+    }
+    .fmess {
+        float: left;
+        margin-bottom: 50px;
+        margin-top: 15px;
+        width: 50%;
+    }
+    .actions-order {
+        float: right;
+        margin-right: 62px;
+        padding-top: 15px;
+    }
+    .reorderurl {
+        float: left;
+        font-size: 20px;
+    }
+    .printurl {
+        float: left;
+        font-size: 20px;
+        padding-left: 50px;
+    }
+    .action-reorder {
+        &:hover {
+            color: @primary-order-details-color-red;
+            text-decoration: none;
+        }
+    }
+    .action-print {
+        &:hover {
+            color: @primary-order-details-color-red;
+            text-decoration: none;
+        }
+    }
+    .text-under {
+        height: 50px;
+    }
+    .status {
+        margin-top: 5px;
+    }
+    .button-continue {
+        float: right;
+        width: 50%;
+        .continue {
+            background-color: @primary-order-details-color-orange;
+            border: none;
+            clear: both;
+            float: right;
+            font-size: 12px;
+            margin-right: 70px;
+            padding: 10px 25px;
+            &:hover {
+                background-color: @primary-order-details-color-orange;
+                border: 1px solid @primary-order-details-color-orange;
+            }
+        }
+        a.action.primary {
+            border-radius: 0;
+        }
+    }
+    table {
+        td {
+            background-color: rgb(225,221,219);
+            padding: 10px 0 10px 5px;
+        }
+        tbody {
+            tr {
+                td {
+                    dl {
+                        margin-bottom: 0;
+                        padding-top: 5px;
+                    }
+                }
+            }
+        }
+    }
+    tfoot {
+        th {
+            background-color: rgb(225,221,219);
+            padding-right: 50px !important;
+            text-align: right;
+            text-transform: uppercase;
+        }
+        td {
+            padding-right: 40px !important;
+            text-align: right;
+        }
+    }
+    .data-item {
+        border-bottom: 4px solid @primary-order-details-color-white;
+        border-top: 4px solid @primary-order-details-color-white;
+        td {
+            border-right: 4px solid @primary-order-details-color-white;
+            &:last-child {
+                border-right: none;
+            }
+        }
+    }
+    .table-number {
+        text-align: right;
+    }
+    @media only screen and (min-width: 768px) {
+        .checkout-onepage-success {
+            .ie10 {
+                .page-wrapper {
+                    height: auto !important;
+                }
+            }
+        }
+        .ie11 {
+            .page-wrapper {
+                height: auto !important;
+            }
+        }
+    }
+    @media only screen and (max-width: 480px) {
+        .fmess {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        .bmess {
+            width: 100%;
+        }
+        .button-continue {
+            margin-top: 10px;
+            width: 100%;
+            .continue {
+                float: none;
+            }
+        }
+        .actions-order {
+            clear: both;
+            float: none;
+        }
+        .data-item {
+            border-bottom: none;
+            td {
+                border-right: none;
+            }
+        }
+    }
+}
