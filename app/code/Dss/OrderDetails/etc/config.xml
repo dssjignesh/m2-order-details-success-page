@@ -15,14 +15,17 @@
                 <show_order_status>1</show_order_status>
             </general>
             <thank_cofig>
+                <thank_messager>Thank You !</thank_messager>
                 <size_thanks>20</size_thanks>
                 <color_thanks>FFFFFF</color_thanks>
             </thank_cofig>
             <before_config>
+                <text_before>Please check you order information again</text_before>
                 <size_before_text>20</size_before_text>
                 <color_text_before>FFFFFF</color_text_before>
             </before_config>
             <after_config>
+                <text_after>Hope to see you next time!</text_after>
                 <size_after_text>20</size_after_text>
                 <color_text_after>FFFFFF</color_text_after>
             </after_config>
