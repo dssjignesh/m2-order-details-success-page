@@ -10,8 +10,9 @@
  * @category   Dss
  * @package    Dss_OrderDetails
  * @author     Extension Team
- * @copyright Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
-*/
+ * @copyright  Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
+ */
+
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::MODULE,
     'Dss_OrderDetails',
